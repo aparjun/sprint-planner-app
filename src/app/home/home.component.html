@@ -1,18 +1,25 @@
-
-<p-card header="Title">
-    <p-tabView>
-        <p-tabPanel header="Stories">
-
-            <p-card header="Title" styleClass="w-2">
-Add
-            </p-card>
-
-        </p-tabPanel>
-        <p-tabPanel header="Sprints">
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
-            </p>
-        </p-tabPanel>
-    </p-tabView>
-</p-card>
+<h3 class="">
+    Smart Sprint Planner
+</h3>
+<p-tabView styleClass="shadow-3 border-round-md">
+    <p-tabPanel header="Stories">
+        <div class="grid overflow-y-scroll h-24rem">
+            <div *ngFor="let item of storyList" class="col-6 md:col-3 xl:col-2">
+                <p-card header="best is yes to  dncdk" [styleClass]="item === '1' ? 'bg-green-800 text-white' : item === '0' ? 'bg-green-600 text-white' : 'bg-green-100 text-black-alpha-70'">
+                    <p>
+          
+                    </p>
+                    <ng-template pTemplate="footer">
+                       Points
+                    </ng-template>
+                                </p-card>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Sprints">
+        <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+            ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+        </p>
+    </p-tabPanel>
+</p-tabView>

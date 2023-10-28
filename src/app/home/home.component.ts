@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  storyList: any = [];
+  constructor(){
+    this.storyList = [
+      '', '', '', '', '1', '', '', '0', '', '', '', '', '', '', '', 
+    ]
+  }
 }

@@ -8,6 +8,13 @@
     a[aria-selected="false"]{
         background-color: rgb(226, 226, 226);
     }
+    a[aria-selected="true"]{
+        border-color: white;
+    }
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border-radius: 0px;
+    }
+
 }
 
 
