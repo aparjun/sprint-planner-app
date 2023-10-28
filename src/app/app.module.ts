@@ -10,6 +10,9 @@ import { CreateSprintComponent } from './create-sprint/create-sprint.component';
 import { HomeComponent } from './home/home.component';
 import { TabViewModule } from 'primeng/tabview';
 import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { CardModule } from 'primeng/card';
     BrowserModule,
     AppRoutingModule,
     TabViewModule,
-    CardModule
+    CardModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]

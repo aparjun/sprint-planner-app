@@ -8,9 +8,24 @@ import { Component } from '@angular/core';
 export class HomeComponent {
 
   storyList: any = [];
+  visible = false;
   constructor(){
-    this.storyList = [
-      '', '', '', '', '1', '', '', '0', '', '', '', '', '', '', '', 
-    ]
+  }
+
+  openDialog(){
+    this.visible = true;
+  }
+
+  onDialogClose(event: any) {
+    this.visible = event;
+ }
+
+  createStory(){
+    this.storyList.push({
+      name: 'test',
+      description: 'testing',
+      points: 12
+    });
+    this.visible = false;
   }
 }
