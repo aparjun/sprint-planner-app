@@ -1,0 +1,15 @@
+/* Style the tab view container to occupy the full width */
+
+:host ::ng-deep {
+    .p-tabview .p-tabview-nav li {
+        margin-right: 0;
+        width: 50%;
+    }
+    a[aria-selected="false"]{
+        background-color: rgb(226, 226, 226);
+    }
+}
+
+
+
+  

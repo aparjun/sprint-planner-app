@@ -9,6 +9,7 @@ import { CreateStoryComponent } from './create-story/create-story.component';
 import { CreateSprintComponent } from './create-sprint/create-sprint.component';
 import { HomeComponent } from './home/home.component';
 import { TabViewModule } from 'primeng/tabview';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TabViewModule } from 'primeng/tabview';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TabViewModule
+    TabViewModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
