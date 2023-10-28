@@ -13,6 +13,7 @@ import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { InputTextModule } from 'primeng/inputtext';
     CardModule,
     DialogModule,
     BrowserAnimationsModule,
-    InputTextModule
+    InputTextModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,9 +9,16 @@ export class CreateStoryComponent implements OnDestroy{
 
   @Input() displayDialog: boolean;
   @Output() closeDialogEvent = new EventEmitter<boolean>();
+  @Output() onSubmit = new EventEmitter<any>();
 
+  storyDetails: any;
   constructor(){
     this.displayDialog = true;
+    this.storyDetails = {
+      name: '',
+      description: '',
+      points: 1
+    };
   }
 
   closeDialog(){
@@ -19,6 +26,12 @@ export class CreateStoryComponent implements OnDestroy{
   }
 
   createStory(){
+    this.onSubmit.emit(this.storyDetails);
+    this.storyDetails = {
+      name: '',
+      description: '',
+      points: 1
+    };
     this.displayDialog = false;
   }
 

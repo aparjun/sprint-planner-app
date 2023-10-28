@@ -7,25 +7,19 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  storyList: any = [];
+  storyCount: number;
+  sprintCount: number;
   visible = false;
   constructor(){
+    this.storyCount = 0;
+    this.sprintCount = 0;
   }
 
-  openDialog(){
-    this.visible = true;
+  updateStoryCount(event: any){
+    this.storyCount = event;
   }
 
-  onDialogClose(event: any) {
-    this.visible = event;
- }
-
-  createStory(){
-    this.storyList.push({
-      name: 'test',
-      description: 'testing',
-      points: 12
-    });
-    this.visible = false;
+  updateSprintCount(event: any){
+    this.sprintCount = event;
   }
 }
