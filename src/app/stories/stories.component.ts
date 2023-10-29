@@ -1,12 +1,13 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-stories',
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.scss']
 })
-export class StoriesComponent {
-  @Output() onCreate = new EventEmitter<any>();
+export class StoriesComponent implements OnInit {
+  @Input() dataState!: BehaviorSubject<any>;
   storyList: any = [];
   visible = false;
   smallStoryLimit: number;
@@ -14,6 +15,12 @@ export class StoriesComponent {
   constructor(){
     this.smallStoryLimit = 0;
     this.largeStoryLimit = 0;
+  }
+
+  ngOnInit() {
+    this.dataState.subscribe((data) => {
+      this.storyList = data.stories;
+    });
   }
 
   openDialog(){
@@ -25,14 +32,15 @@ export class StoriesComponent {
  }
 
   createStory(event: any){
-    this.storyList.push(event);
-    this.onCreate.emit(this.storyList.length);
+    this.storyList.unshift(event);
+    const updatedData = this.dataState.getValue();
+    updatedData.stories = this.storyList;
+    this.dataState.next(updatedData);
     this.visible = false;
     this.calculateSplittingPoints();
   }
 
   calculateSplittingPoints() {
-    const n = this.storyList.length;
     const pointsArray = this.storyList.map((item: any) => item.points);
     const lowerBound = Math.min(...pointsArray);
     const upperBound = Math.max(...pointsArray);

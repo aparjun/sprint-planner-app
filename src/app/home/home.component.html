@@ -1,14 +1,17 @@
-<h3 class="text-black-alpha-70">
-    Smart Sprint Planner
-</h3>
-<p-tabView styleClass="shadow-3 border-round-md">
-    <p-tabPanel header="{{ storyCount }}{{ storyCount === 1 ? ' Story' : ' Stories'}}">
-        <app-stories (onCreate)="updateStoryCount($event)"></app-stories>
-    </p-tabPanel>
-    <p-tabPanel header="{{ sprintCount }}{{ sprintCount === 1 ? ' Sprint' : ' Sprints'}}">
-        <app-sprints (onCreate)="updateSprintCount($event)"></app-sprints>
-    </p-tabPanel>
-</p-tabView>
+<div class="w-full h-full surface-100">
+    <div class="w-full h-2rem text-black-alpha-70 pl-2 font-bold">
+        Smart Sprint Planner
+    </div>
+    <p-tabView styleClass="shadow-3 border-round-md">
+        <p-tabPanel header="{{ stories.length }}{{ stories.length === 1 ? ' Story' : ' Stories'}}">
+            <app-stories [dataState]="dataState"></app-stories>
+        </p-tabPanel>
+        <p-tabPanel header="{{ sprints.length }}{{ sprints.length === 1 ? ' Sprint' : ' Sprints'}}">
+            <app-sprints [dataState]="dataState"></app-sprints>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
 
 
 

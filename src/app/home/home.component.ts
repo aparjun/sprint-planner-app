@@ -1,25 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-
-  storyCount: number;
-  sprintCount: number;
+export class HomeComponent implements AfterViewInit, OnInit {
+  stories: any;
+  sprints: any;
   visible = false;
-  constructor(){
-    this.storyCount = 0;
-    this.sprintCount = 0;
+
+  dataState = new BehaviorSubject<any>({ stories: [], sprints: [] });
+
+  constructor(private elementRef: ElementRef) {
+    this.stories = [];
+    this.sprints = [];
   }
 
-  updateStoryCount(event: any){
-    this.storyCount = event;
+
+  ngOnInit() {
+    this.dataState.subscribe((data) => {
+      this.stories = data.stories;
+      this.sprints = data.sprints;
+    });
   }
 
-  updateSprintCount(event: any){
-    this.sprintCount = event;
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f5f5f5';
   }
+
 }

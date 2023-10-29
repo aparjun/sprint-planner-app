@@ -14,6 +14,7 @@ import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FormsModule } from '@angular/forms';
     DialogModule,
     BrowserAnimationsModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    FieldsetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

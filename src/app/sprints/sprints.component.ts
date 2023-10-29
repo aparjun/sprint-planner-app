@@ -1,19 +1,31 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-sprints',
   templateUrl: './sprints.component.html',
   styleUrls: ['./sprints.component.scss']
 })
-export class SprintsComponent {
-  @Output() onCreate = new EventEmitter<any>();
+export class SprintsComponent implements OnInit {
+  @Input() dataState!: BehaviorSubject<any>;
   sprintList: any = [];
   visible = false;
   smallStoryLimit: number;
   largeStoryLimit: number;
+
+
+  
+
   constructor(){
     this.smallStoryLimit = 0;
     this.largeStoryLimit = 0;
+  }
+
+  ngOnInit() {
+    this.dataState.subscribe((data) => {
+      this.sprintList = data.sprints;
+    });
+    
   }
 
   openDialog(){
@@ -24,16 +36,17 @@ export class SprintsComponent {
     this.visible = event;
  }
 
-  createSprint(event: any){
-    this.sprintList.push(event);
-    this.onCreate.emit(this.sprintList.length);
-    this.visible = false;
-    this.calculateSplittingPoints();
-  }
+ createSprint(event: any){
+  this.sprintList.unshift(event);
+  const updatedData = this.dataState.getValue();
+  updatedData.sprints = this.sprintList;
+  this.dataState.next(updatedData);
+  this.visible = false;
+  this.calculateSplittingPoints();
+}
 
   calculateSplittingPoints() {
-    const n = this.sprintList.length;
-    const pointsArray = this.sprintList.map((item: any) => item.points);
+    const pointsArray = this.sprintList.map((item: any) => item.sprintCapacity);
     const lowerBound = Math.min(...pointsArray);
     const upperBound = Math.max(...pointsArray);
     const range = upperBound - lowerBound;

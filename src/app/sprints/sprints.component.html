@@ -1,4 +1,4 @@
-<div class="grid overflow-y-auto h-24rem">
+<div class="grid overflow-y-auto h-25rem">
     <div class="col-3">
         <p-card styleClass="flex justify-content-center cursor-pointer" (click)="openDialog()">
             New <br>
@@ -6,16 +6,23 @@
         </p-card>
     </div>
 
-    <div *ngFor="let item of sprintList" class="col-6 md:col-3 xl:col-3">
-        <p-card header="{{item.name}}"
-        [styleClass]="item.points > largeStoryLimit ? 'bg-green-800 text-white' : item.points > smallStoryLimit ? 'bg-green-600 text-white' : 'bg-green-100 text-black-alpha-70'">
-            <p>
-                {{item.description}}
-            </p>
+    <div *ngFor="let sprint of sprintList" class="col-6 md:col-3 xl:col-3">
+        <p-card header="{{sprint.name}}"
+        [styleClass]="sprint.sprintCapacity > largeStoryLimit ? 'bg-green-800 text-white' : sprint.sprintCapacity > smallStoryLimit ? 'bg-green-600 text-white' : 'bg-green-100 text-black-alpha-70'">
+        <div class="grid m-0 p-1">
+            <div *ngFor="let story of sprint.sprintStories" class="col-12 mt-2">
+                <p-card header="{{story.name}}">
+                    <ng-template pTemplate="footer">
+                       <span class="text-4xl">{{story.points}}</span> {{ story.points === 1 ? 'Point' : 'Points'}}
+                    </ng-template>
+                </p-card>
+            </div>
+        </div>
             <ng-template pTemplate="footer">
-               <span class="text-4xl">{{item.points}}</span> {{ item.points === 1 ? 'Point' : 'Points'}}
+               <span class="text-4xl">{{sprint.sprintCapacity}}</span> {{ sprint.sprintCapacity === 1 ? 'Point' : 'Points'}}
             </ng-template>
         </p-card>
     </div>
+    
 </div>
-<app-create-sprint [displayDialog]="visible" (closeDialogEvent)="onDialogClose($event)" (onSubmit)="createSprint($event)"></app-create-sprint>
+<app-create-sprint [dataState]="dataState" [displayDialog]="visible" (closeDialogEvent)="onDialogClose($event)" (onSubmit)="createSprint($event)"></app-create-sprint>
