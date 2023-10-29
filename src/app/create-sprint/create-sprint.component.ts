@@ -14,6 +14,9 @@ export class CreateSprintComponent implements OnInit, OnDestroy {
 
   sprintDetails: any;
   allStories: any;
+  allSprints: any;
+  sprintNameExists: boolean;
+  noSelections: boolean;
   smallStoryLimit: number;
   largeStoryLimit: number;
   resultSprintSize: number = 0;
@@ -22,19 +25,20 @@ export class CreateSprintComponent implements OnInit, OnDestroy {
     this.sprintDetails = {
       name: '',
       sprintCapacity: 1,
-      sprintStories: [
-       
-        
-      ]
+      sprintStories: []
     };
     this.allStories = [];
+    this.allSprints = [];
     this.smallStoryLimit = 0;
     this.largeStoryLimit = 0;
+    this.sprintNameExists = false;
+    this.noSelections = false;
   }
 
   ngOnInit(){
     this.dataState.subscribe((data) => {
       this.allStories = data.stories;
+      this.allSprints = data.sprints;
     });
   }
 
@@ -43,16 +47,23 @@ export class CreateSprintComponent implements OnInit, OnDestroy {
   }
 
   createSprint(){
-    this.onSubmit.emit(this.sprintDetails);
-    this.sprintDetails = {
-      name: '',
-      sprintCapacity: 1,
-      sprintStories: []
-    };
-    this.displayDialog = false;
+    const duplicateSprint = this.allSprints.find((element: any) => element.name === this.sprintDetails.name);
+    if (duplicateSprint){
+      this.sprintNameExists = true;
+    } else {
+      this.sprintNameExists = false;
+      this.onSubmit.emit(this.sprintDetails);
+      this.sprintDetails = {
+        name: '',
+        sprintCapacity: 1,
+        sprintStories: []
+      };
+      this.displayDialog = false;
+    }
   }
 
   findClosestSet(items: any = this.allStories, target: number = this.sprintDetails.sprintCapacity, currentSet: any = [], currentIndex: number = 0, currentSum: number = 0) {
+    this.noSelections = this.allStories.length === 0;
     if (currentIndex === items.length) {
       if (currentSum <= target && Math.abs(target - currentSum) < Math.abs(target - this.resultSprintSize)) {
         this.resultSprintSize = currentSum;
@@ -95,6 +106,7 @@ export class CreateSprintComponent implements OnInit, OnDestroy {
       sprintCapacity: 1,
       sprintStories: []
     };
+    this.clearSprints();
   }
 
   clearSprints(){

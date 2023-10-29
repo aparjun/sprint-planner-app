@@ -18,4 +18,4 @@
         </p-card>
     </div>
 </div>
-<app-create-story [displayDialog]="visible" (closeDialogEvent)="onDialogClose($event)" (onSubmit)="createStory($event)"></app-create-story>
+<app-create-story [dataState]="dataState" [displayDialog]="visible" (closeDialogEvent)="onDialogClose($event)" (onSubmit)="createStory($event)"></app-create-story>

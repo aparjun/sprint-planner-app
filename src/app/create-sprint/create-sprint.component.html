@@ -3,10 +3,12 @@
         <div class="field col-12 md:col-6">
             <label for="name">Name</label>
             <input [(ngModel)]="sprintDetails.name" placeholder="Enter sprint name" id="name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <small *ngIf="sprintNameExists" class="text-red-600">Sprint name already exists.</small>
         </div>
         <div class="field col-12 md:col-6">
             <label for="name">Sprint Capacity</label>
-            <input [(ngModel)]="sprintDetails.sprintCapacity" placeholder="Enter sprint capacity in points" id="name" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <input [(ngModel)]="sprintDetails.sprintCapacity" min="1" placeholder="Enter sprint capacity in points" id="name" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <small *ngIf="noSelections" class="text-red-600">Couldn't select stories</small>
         </div>
     
         <div class="field col-12 relative">
@@ -18,7 +20,7 @@
             
         </div>
         <div class="field col-12 md:col-6">
-            <button  type="button" class=" w-full h-3rem right-0 bg-yellow-500 border-yellow-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-yellow-600 hover:border-yellow-600 active:bg-primary-700 active:border-yellow-700">Clear Sprints</button>
+            <button (click)="clearSprints()" type="button" class=" w-full h-3rem right-0 bg-yellow-500 border-yellow-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-yellow-600 hover:border-yellow-600 active:bg-primary-700 active:border-yellow-700">Clear Sprints</button>
         </div>
         
         <div class="field col-12 relative" *ngIf="sprintDetails.sprintStories.length">

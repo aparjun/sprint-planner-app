@@ -3,6 +3,7 @@
         <div class="field col-12 md:col-6">
             <label for="name">Name</label>
             <input [(ngModel)]="storyDetails.name" id="name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <small *ngIf="storyNameExists" class="text-red-600">Story name already exists.</small>
         </div>
         <div class="field col-12">
             <label for="description">Description</label>
